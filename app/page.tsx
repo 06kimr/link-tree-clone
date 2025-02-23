@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
+import { createClient } from "@/utils/supabase/server";
 
-function Page() {
-  return <div className="container">
-    <Button>HJello</Button>
-  </div>;
+async function Page() {
+  return (
+    <div className="container">
+      <Button>HJello</Button>
+    </div>
+  );
 }
 
 export default Page;
