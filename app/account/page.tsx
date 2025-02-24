@@ -1,3 +1,4 @@
+import UserProfileForm from "@/components/user-profile-form";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -12,7 +13,22 @@ async function Page() {
   if (error || !data.user) {
     redirect(`/login?${searchParams.toString()}`);
   }
-  return <div className="container">Account</div>;
+
+  const { data: profile, error: profileError } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("id", data.user.id)
+    .single();
+
+  if (profileError) {
+    throw error;
+  }
+
+  return (
+    <div className="container">
+      <UserProfileForm profile={profile} />
+    </div>
+  );
 }
 
 export default Page;
