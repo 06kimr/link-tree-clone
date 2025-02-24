@@ -69,7 +69,7 @@ const UserProfileForm = ({
   const onSubmit = async (data: FormData) => {
     await updateProfile(data);
     console.log("success!");
-    router.push("/");
+    router.push(`/${profile.username}`);
   };
 
   const { fields, append, remove } = useFieldArray({
